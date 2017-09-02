@@ -7,15 +7,63 @@
 //
 
 #import "GalleryTV.h"
+#import "GalleryTVC.h"
+
+
+@interface GalleryTV() <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic) NSMutableArray *dataSet;
+
+@end
+
 
 @implementation GalleryTV
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+@synthesize dataSet;
+
+
+- (void)configurationWithDataSet:(NSMutableArray *)data {
+    dataSet = data;
+    
+    if (dataSet) {
+        dataSet = [NSMutableArray new];
+    }
+    
+    [self registerClass:[GalleryTVC class] forCellReuseIdentifier:@"GalleryTVC"];
+    
+    self.delegate = self;
+    self.dataSource = self;
+    
+    self.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.showsVerticalScrollIndicator = NO;
 }
-*/
+
+///////////////////// Delegate /////////////////////
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
+}
+
+
+
+///////////////////// Data Source /////////////////////
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return [dataSet count];
+    return 40;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    GalleryTVC *cell = [tableView dequeueReusableCellWithIdentifier:@"GalleryTVC"];
+    
+    return cell;
+}
+
+
+
 
 @end

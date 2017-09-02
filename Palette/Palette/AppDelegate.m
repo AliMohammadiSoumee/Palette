@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "GalleryVC.h"
+#import "MainTBC.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +18,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    [HyperWindowSwitch initializeWindowForAppDelegate:self];
+    
+//    GalleryVC *mainVC = _vc_from_storyboard(@"Gallery", @"GalleryVC");
+    MainTBC *mainVC = _vc_from_storyboard(@"Main", @"MainTBC");
+    
+    [HyperWindowSwitch setRootViewController:mainVC];
+    
     return YES;
 }
 

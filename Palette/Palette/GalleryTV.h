@@ -10,4 +10,7 @@
 
 @interface GalleryTV : UITableView
 
+
+- (void)configurationWithDataSet:(NSMutableArray *)data;
+
 @end
