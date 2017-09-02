@@ -14,9 +14,11 @@
 #import "Helper_Palette.h"
 #import "Helper_Connectivity.h"
 #import "UIViewController+PPTopMostController.h"
+#import "HyperWindowSwitch.h"
 
 
 
-#define defaultGreenColor [UIColor colorWithHexString:@"1DB955"]
+#define spotifyGreenColor [UIColor colorWithHexString:@"1DB955"]
+#define turquoiseColor [UIColor colorWithHexString:@"40E0D0"]
 
 #endif /* Palette_pch */
