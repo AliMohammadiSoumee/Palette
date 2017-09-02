@@ -1,0 +1,22 @@
+//
+//  Palette.pch
+//  Palette
+//
+//  Created by Ali Soume`e on 5/22/1396 AP.
+//  Copyright © 1396 Ali Soume`e. All rights reserved.
+//
+
+#ifndef Palette_pch
+#define Palette_pch
+
+
+#import "Codebase.h"
+#import "Helper_Palette.h"
+#import "Helper_Connectivity.h"
+#import "UIViewController+PPTopMostController.h"
+
+
+
+#define defaultGreenColor [UIColor colorWithHexString:@"1DB955"]
+
+#endif /* Palette_pch */
