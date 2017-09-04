@@ -58,7 +58,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    GalleryTVC *cell = [tableView dequeueReusableCellWithIdentifier:@"GalleryTVC"];
+    GalleryTVC *cell = [tableView dequeueReusableCellWithIdentifier:@"GalleryTVC" forIndexPath:indexPath];
     
     return cell;
 }

@@ -12,6 +12,6 @@
 
 
 + (NSString*)convertEnNumberToFarsi:(NSString*)number;
-
++ (int)getRandomNumberBetween:(int)from to:(int)to;
 
 @end

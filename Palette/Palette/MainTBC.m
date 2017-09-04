@@ -8,10 +8,12 @@
 
 #import "MainTBC.h"
 #import "GalleryVC.h"
+#import "EventVC.h"
 
 @interface MainTBC ()
 
-@property (nonatomic) GalleryVC *galleryVC;
+@property (nonatomic) UINavigationController *galleryVC;
+@property (nonatomic) UINavigationController *eventVC;
 
 @end
 
@@ -22,6 +24,7 @@
 @implementation MainTBC
 
 @synthesize galleryVC;
+@synthesize eventVC;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,12 +38,12 @@
 
 - (void)prepareViewControllers {
     
-    UITabBarItem *galleryItem = [UITabBarItem new];
+//    UITabBarItem *galleryItem = [UITabBarItem new];
     
-    [galleryItem setImage:[UIImage imageNamed:@"selectedGallery"]];
-    [galleryItem setSelectedImage:[UIImage imageNamed:@"unselectedGallery"]];
-    galleryItem.imageInsets = UIEdgeInsetsMake(8, 0, -8, 0);
-    
+//    [galleryItem setImage:[UIImage imageNamed:@"selectedGallery"]];
+//    [galleryItem setSelectedImage:[UIImage imageNamed:@"unselectedGallery"]];
+//    galleryItem.imageInsets = UIEdgeInsetsMake(8, 0, -8, 0);
+//    
     
 //    galleryItem.title = @"گالری";
 //    
@@ -55,9 +58,11 @@
 //    [galleryItem setBadgeTextAttributes:selected forState:UIControlStateSelected];
     
     galleryVC = _vc_from_storyboard(@"Gallery", @"GalleryNavC");
-    galleryVC.tabBarItem = galleryItem;
     [self addChildViewController:galleryVC];
     
+    
+    eventVC = _vc_from_storyboard(@"Event", @"EventNavC");
+    [self addChildViewController:eventVC];
 }
 
 @end

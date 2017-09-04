@@ -22,6 +22,11 @@
 		A30852CB1F5ADF21003978C9 /* IRANSansMobile(FaNum)_Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A30852C61F5ADF21003978C9 /* IRANSansMobile(FaNum)_Medium.ttf */; };
 		A30852CC1F5ADF21003978C9 /* IRANSansMobile(FaNum)_UltraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A30852C71F5ADF21003978C9 /* IRANSansMobile(FaNum)_UltraLight.ttf */; };
 		A30852CD1F5ADF21003978C9 /* IRANSansMobile(FaNum).ttf in Resources */ = {isa = PBXBuildFile; fileRef = A30852C81F5ADF21003978C9 /* IRANSansMobile(FaNum).ttf */; };
+		A30852D01F5AF0A3003978C9 /* Event.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A30852CF1F5AF0A3003978C9 /* Event.storyboard */; };
+		A30852D31F5AF0B4003978C9 /* EventVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A30852D21F5AF0B4003978C9 /* EventVC.m */; };
+		A30852D61F5AF0CE003978C9 /* EventCV.m in Sources */ = {isa = PBXBuildFile; fileRef = A30852D51F5AF0CE003978C9 /* EventCV.m */; };
+		A30852D91F5AF0E1003978C9 /* EventCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A30852D81F5AF0E1003978C9 /* EventCVC.m */; };
+		A3937C3A1F5C12AF005C117C /* EventCVL.m in Sources */ = {isa = PBXBuildFile; fileRef = A3937C391F5C12AF005C117C /* EventCVL.m */; };
 		A39CCDC61F58FCED00AF611F /* UITextView+AMSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CCDC11F58FCED00AF611F /* UITextView+AMSExtension.m */; };
 		A39CCDC71F58FCED00AF611F /* UIView+AMSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CCDC31F58FCED00AF611F /* UIView+AMSExtension.m */; };
 		A39CCDC81F58FCED00AF611F /* UIImage+AMSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CCDC51F58FCED00AF611F /* UIImage+AMSExtension.m */; };
@@ -56,6 +61,15 @@
 		A30852C61F5ADF21003978C9 /* IRANSansMobile(FaNum)_Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IRANSansMobile(FaNum)_Medium.ttf"; sourceTree = "<group>"; };
 		A30852C71F5ADF21003978C9 /* IRANSansMobile(FaNum)_UltraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IRANSansMobile(FaNum)_UltraLight.ttf"; sourceTree = "<group>"; };
 		A30852C81F5ADF21003978C9 /* IRANSansMobile(FaNum).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IRANSansMobile(FaNum).ttf"; sourceTree = "<group>"; };
+		A30852CF1F5AF0A3003978C9 /* Event.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Event.storyboard; sourceTree = "<group>"; };
+		A30852D11F5AF0B4003978C9 /* EventVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventVC.h; sourceTree = "<group>"; };
+		A30852D21F5AF0B4003978C9 /* EventVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventVC.m; sourceTree = "<group>"; };
+		A30852D41F5AF0CE003978C9 /* EventCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCV.h; sourceTree = "<group>"; };
+		A30852D51F5AF0CE003978C9 /* EventCV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCV.m; sourceTree = "<group>"; };
+		A30852D71F5AF0E1003978C9 /* EventCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCVC.h; sourceTree = "<group>"; };
+		A30852D81F5AF0E1003978C9 /* EventCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCVC.m; sourceTree = "<group>"; };
+		A3937C381F5C12AF005C117C /* EventCVL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCVL.h; sourceTree = "<group>"; };
+		A3937C391F5C12AF005C117C /* EventCVL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCVL.m; sourceTree = "<group>"; };
 		A39CCDC01F58FCED00AF611F /* UITextView+AMSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+AMSExtension.h"; sourceTree = "<group>"; };
 		A39CCDC11F58FCED00AF611F /* UITextView+AMSExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+AMSExtension.m"; sourceTree = "<group>"; };
 		A39CCDC21F58FCED00AF611F /* UIView+AMSExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AMSExtension.h"; sourceTree = "<group>"; };
@@ -136,6 +150,22 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		A30852CE1F5AF08E003978C9 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				A30852D11F5AF0B4003978C9 /* EventVC.h */,
+				A30852D21F5AF0B4003978C9 /* EventVC.m */,
+				A30852D41F5AF0CE003978C9 /* EventCV.h */,
+				A30852D51F5AF0CE003978C9 /* EventCV.m */,
+				A3937C381F5C12AF005C117C /* EventCVL.h */,
+				A3937C391F5C12AF005C117C /* EventCVL.m */,
+				A30852D71F5AF0E1003978C9 /* EventCVC.h */,
+				A30852D81F5AF0E1003978C9 /* EventCVC.m */,
+				A30852CF1F5AF0A3003978C9 /* Event.storyboard */,
+			);
+			name = Event;
+			sourceTree = "<group>";
+		};
 		A39CCDBF1F58FCD600AF611F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +228,7 @@
 				A30852AF1F5AC87A003978C9 /* MainTBC.m */,
 				A30852AC1F5AC830003978C9 /* Main.storyboard */,
 				A30852B11F5AC8F6003978C9 /* Gallery */,
+				A30852CE1F5AF08E003978C9 /* Event */,
 				A39CCDCA1F58FD2E00AF611F /* Helper */,
 				A39CCDBF1F58FCD600AF611F /* Extension */,
 				A39CCDC91F58FD0300AF611F /* Pictures */,
@@ -291,6 +322,7 @@
 				A3E2BEB41F5818B400F33E83 /* LaunchScreen.storyboard in Resources */,
 				A30852C21F5ADEFE003978C9 /* IRANYekanMobileLight.ttf in Resources */,
 				A3E2BEB11F5818B400F33E83 /* Assets.xcassets in Resources */,
+				A30852D01F5AF0A3003978C9 /* Event.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +382,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A39CCDC71F58FCED00AF611F /* UIView+AMSExtension.m in Sources */,
+				A30852D61F5AF0CE003978C9 /* EventCV.m in Sources */,
 				A3E2BEA91F5818B400F33E83 /* AppDelegate.m in Sources */,
+				A30852D91F5AF0E1003978C9 /* EventCVC.m in Sources */,
 				A39CCDD21F58FD3B00AF611F /* Helper_Palette.m in Sources */,
 				A3E2BEA61F5818B400F33E83 /* main.m in Sources */,
 				A39CCDC61F58FCED00AF611F /* UITextView+AMSExtension.m in Sources */,
@@ -358,6 +392,8 @@
 				A39CCDD41F58FD3B00AF611F /* ServerErrors.m in Sources */,
 				A30852B01F5AC87A003978C9 /* MainTBC.m in Sources */,
 				A30852BC1F5ACABA003978C9 /* GalleryTVC.m in Sources */,
+				A30852D31F5AF0B4003978C9 /* EventVC.m in Sources */,
+				A3937C3A1F5C12AF005C117C /* EventCVL.m in Sources */,
 				A39CCDC81F58FCED00AF611F /* UIImage+AMSExtension.m in Sources */,
 				A30852B61F5AC927003978C9 /* GalleryVC.m in Sources */,
 				A30852B91F5ACAA2003978C9 /* GalleryTV.m in Sources */,

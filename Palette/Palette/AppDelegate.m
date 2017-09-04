@@ -20,10 +20,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [HyperWindowSwitch initializeWindowForAppDelegate:self];
+
     
-//    GalleryVC *mainVC = _vc_from_storyboard(@"Gallery", @"GalleryVC");
     MainTBC *mainVC = _vc_from_storyboard(@"Main", @"MainTBC");
+//    GalleryVC *mainVC = _vc_from_storyboard(@"Gallery", @"GalleryVC");
+//    UINavigationController *mainVC = _vc_from_storyboard(@"Event", @"EventNavC");
     
+    
+    
+    [helper printAvailableFonts];
     [HyperWindowSwitch setRootViewController:mainVC];
     
     return YES;
