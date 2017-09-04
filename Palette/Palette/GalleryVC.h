@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GalleryVC : UIViewController
+@interface GalleryVC : _HomeBaseVC
 
 @end

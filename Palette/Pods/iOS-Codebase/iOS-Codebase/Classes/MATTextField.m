@@ -29,6 +29,7 @@
 	{
 		self.textContainerInset = UIEdgeInsetsZero;
 		self.textContainer.lineFragmentPadding = 0;
+		self.backgroundColor = [UIColor clearColor];
 	}
 	return self;
 }
@@ -401,6 +402,11 @@ typedef enum : NSUInteger {
 	}
 }
 
+-(void)forceValidate
+{
+	_validateContinuously = YES;
+	[self setNeedsRefresh];
+}
 
 -(void)__refreshTextAlignments
 {
@@ -910,13 +916,17 @@ typedef enum : NSUInteger {
 
 -(BOOL)isValid
 {
+	if (_disabled)
+		return true;
+	
 	if (!hasValidatedAtLeastOnce)
 	{
 		[self checkLengthIfNeeded];
 		[self validateIfNeeded];
-		if (error == ErrorTypeNone)
-			return true;
 	}
+	
+	if (error == ErrorTypeNone)
+		return true;
 	
 	return false;
 }

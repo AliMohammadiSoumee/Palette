@@ -12,20 +12,24 @@
 @interface GalleryVC ()
 
 @property (nonatomic)GalleryTV *tableView;
+@property (nonatomic)NSMutableArray *dataSet;
 
 @end
+
+
+
 
 @implementation GalleryVC
 
 @synthesize tableView;
+@synthesize dataSet;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [self configNavBar];
-    [self prepareTableView];
-
+    [self prepareDataSet];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,18 +38,52 @@
 }
 
 
-///////////////////// Nav Bar /////////////////////
+///////////////////// Data Set /////////////////////
+- (void)prepareDataSet {
+    dataSet = [NSMutableArray new];
+    
+    [self showPageLoadingAnimated:YES completion:nil];
+    
+    [Helper_Connectivity getGalleyDictionaryWithParameter:nil andSuccessHandler:^(NSMutableArray *dic) {
+        
+        dataSet = dic;
+        [self prepareTableView];
+        [self hidePageLoadingAnimated:YES completion:nil];
+        
+    } andFailHandler:^{
+        
+        [self hidePageLoadingAnimated:YES completion:nil];
+        
+    }];
+}
+
+
+///////////////////// Navigation Bar /////////////////////
 
 - (void)configNavBar {
-    UILabel *title = [UILabel new];
-
-    title.text = @"پالت";
-    title.font = [UIFont fontWithName:@"IRANYekanMobile-Bold" size:20];
-    title.textColor = [UIColor blackColor];
-    title.textAlignment = NSTextAlignmentCenter;
+    self.title = @"پالت";
+    self.tabBarItem.title = @"";
     
-    title.frame = CGRectMake(0, 0, 60, 50);
-    self.navigationItem.titleView = title;
+    self.hideNavBarOnLoading = NO;
+    self.hideVisualEffectViewOnLoading = NO;
+    
+    UIColor *color = [UIColor colorWithRed:232.0/255 green:232.0/255 blue:232.0/255 alpha:1];
+    [helper hairlineBottomOfView:self.visualEffectView margin:0 backColor:color];
+    
+    UIView *overlayView = [UIView new];
+    overlayView.backgroundColor = [UIColor colorWithRed:150.0/255 green:150.0/255 blue:150.0/255 alpha:0.1];
+    
+    [self.visualEffectView addSubview:overlayView];
+    overlayView.translatesAutoresizingMaskIntoConstraints = NO;
+    [overlayView sdc_alignEdgesWithSuperview:UIRectEdgeAll];
+}
+
+- (UIVisualEffect *)effectForVisualEffectView {
+    return [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+}
+
+- (BOOL)reserveSpaceForLeftNavBarItem {
+    return NO;
 }
 
 ///////////////////// Table View /////////////////////
@@ -57,7 +95,14 @@
     tableView.translatesAutoresizingMaskIntoConstraints = NO;
     [tableView sdc_alignEdgesWithSuperview:UIRectEdgeAll];
     
-    [tableView configurationWithDataSet:nil];
+    [tableView configurationWithDataSet:dataSet];
+    
+    UIEdgeInsets insets = UIEdgeInsetsMake(self.topLayoutGuide.length,
+                                           0.0,
+                                           self.bottomLayoutGuide.length,
+                                           0.0);
+    tableView.contentInset = insets;
+    
 }
 
 @end

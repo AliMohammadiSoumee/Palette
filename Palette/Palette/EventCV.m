@@ -56,22 +56,23 @@
 ///////////////////// Collection Data Source /////////////////////
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return [dataSet count];
+//    return [dataSet count];
+    return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    id array = dataSet[section];
-    if ([array isKindOfClass:[NSMutableArray class]])
-        return [array count];
+//    id array = dataSet[section];
+//    if ([array isKindOfClass:[NSMutableArray class]])
+//        return [array count];
     
-    return 0;
-    
+//    return 0;
+    return [dataSet count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     EventCVC *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"EventCVC" forIndexPath:indexPath];
     
-    [cell configurationWithDictionary:nil];
+    [cell configurationWithDictionary:dataSet[indexPath.row]];
     
     return cell;
 }
@@ -87,7 +88,7 @@
         label.translatesAutoresizingMaskIntoConstraints = NO;
         [label sdc_alignEdgesWithSuperview:UIRectEdgeAll];
         
-        label.backgroundColor = [UIColor greenColor];
+        label.backgroundColor = [UIColor clearColor];
         
         label.font = [UIFont fontWithName:@"IRANYekanMobile-Bold" size:24];
         label.textColor = [UIColor blackColor];
@@ -105,8 +106,16 @@
 ///////////////////// Collection Delegate /////////////////////
 
 - (CGFloat)heightForCellWithIndexPath:(NSIndexPath *)indexPath andWidth:(CGFloat)width {
-    CGFloat w = [dataSet[indexPath.section][indexPath.row][@"width"] floatValue];
-    CGFloat h = [dataSet[indexPath.section][indexPath.row][@"height"] floatValue];
+    
+    //junk
+    CGFloat w = [@([Helper_Palette getRandomNumberBetween:100 to:200]) floatValue];
+    CGFloat h = [@([Helper_Palette getRandomNumberBetween:150 to:250]) floatValue];
+
+//    dataSet[indexPath.section][indexPath.row][@"width"] = @([Helper_Palette getRandomNumberBetween:100 to:200]);
+//    dataSet[indexPath.section][indexPath.row][@"height"] = @([Helper_Palette getRandomNumberBetween:150 to:250]);
+    
+//    CGFloat w = [dataSet[indexPath.section][indexPath.row][@"width"] floatValue];
+//    CGFloat h = [dataSet[indexPath.section][indexPath.row][@"height"] floatValue];
     
     if (w != 0)
         return h * width / w + 70;

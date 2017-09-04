@@ -9,11 +9,12 @@
 #import "MainTBC.h"
 #import "GalleryVC.h"
 #import "EventVC.h"
+#import "MyHomeBaseNavC.h"
 
 @interface MainTBC ()
 
-@property (nonatomic) UINavigationController *galleryVC;
-@property (nonatomic) UINavigationController *eventVC;
+@property (nonatomic) MyHomeBaseNavC *galleryNavC;
+@property (nonatomic) MyHomeBaseNavC *eventNavC;
 
 @end
 
@@ -23,13 +24,14 @@
 
 @implementation MainTBC
 
-@synthesize galleryVC;
-@synthesize eventVC;
+@synthesize galleryNavC;
+@synthesize eventNavC;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor yellowColor];
-    
+    self.view.backgroundColor = [UIColor clearColor];
+    self.tabBar.tintColor = turquoiseColor;
+
     [self prepareViewControllers];
 }
 
@@ -38,31 +40,23 @@
 
 - (void)prepareViewControllers {
     
-//    UITabBarItem *galleryItem = [UITabBarItem new];
-    
-//    [galleryItem setImage:[UIImage imageNamed:@"selectedGallery"]];
-//    [galleryItem setSelectedImage:[UIImage imageNamed:@"unselectedGallery"]];
-//    galleryItem.imageInsets = UIEdgeInsetsMake(8, 0, -8, 0);
-//    
-    
-//    galleryItem.title = @"گالری";
-//    
-//    NSMutableDictionary *unselected = [NSMutableDictionary new];
-//    unselected[NSForegroundColorAttributeName] = [UIColor blackColor];
-//    unselected[NSFontAttributeName] = [UIFont fontWithName:@"IRANSansMobile-Medium" size:18.0];
-//    [galleryItem setBadgeTextAttributes:unselected forState:UIControlStateNormal];
-//    
-//    NSMutableDictionary *selected = [NSMutableDictionary new];
-//    selected[NSForegroundColorAttributeName] = turquoiseColor;
-//    selected[NSFontAttributeName] = [UIFont fontWithName:@"IRANSansMobile-Medium" size:18.0];
-//    [galleryItem setBadgeTextAttributes:selected forState:UIControlStateSelected];
-    
-    galleryVC = _vc_from_storyboard(@"Gallery", @"GalleryNavC");
-    [self addChildViewController:galleryVC];
+    GalleryVC *galleryVC = _vc_from_storyboard(@"Gallery", @"GalleryVC");
+    galleryNavC = [[MyHomeBaseNavC alloc] initWithRootViewController:galleryVC];
+//    [galleryVC view];
+    galleryVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"unframe"] tag:10];
+    galleryVC.tabBarItem.selectedImage = [UIImage imageNamed:@"frame"];
+    galleryVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+    [self addChildViewController:galleryNavC];
     
     
-    eventVC = _vc_from_storyboard(@"Event", @"EventNavC");
-    [self addChildViewController:eventVC];
+    EventVC *eventVC = _vc_from_storyboard(@"Event", @"EventVC");
+    
+    eventNavC = [[MyHomeBaseNavC alloc] initWithRootViewController:eventVC];
+    eventVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"uncalendar"] tag:20];
+    eventVC.tabBarItem.selectedImage = [UIImage imageNamed:@"calendar"];
+    eventVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+
+    [self addChildViewController:eventNavC];
 }
 
 @end

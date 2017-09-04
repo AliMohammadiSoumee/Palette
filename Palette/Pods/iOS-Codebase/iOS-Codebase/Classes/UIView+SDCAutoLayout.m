@@ -430,6 +430,50 @@ static UILayoutPriority priority = UILayoutPriorityRequired;
 	return constraint;
 }
 
+-(NSLayoutConstraint*)sdc_alignBottomEdgeWithBottomLayoutGuideOfVC:(UIViewController*)vc
+{
+	return [self sdc_alignBottomEdgeWithBottomLayoutGuideOfVC:vc offset:0];
+}
+
+-(NSLayoutConstraint*)sdc_alignBottomEdgeWithBottomLayoutGuideOfVC:(UIViewController*)vc offset:(CGFloat)offset
+{
+	UIView *commonAncestor = [self sdc_commonAncestorWithView:vc.view];
+	
+	NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self
+																  attribute:NSLayoutAttributeBottom
+																  relatedBy:NSLayoutRelationEqual
+																	 toItem:vc.bottomLayoutGuide
+																  attribute:NSLayoutAttributeTop
+																 multiplier:1.0
+																   constant:offset];
+	
+	constraint.priority = priority;
+	[commonAncestor addConstraint:constraint];
+	return constraint;
+}
+
+-(NSLayoutConstraint*)sdc_alignTopEdgeWithTopLayoutGuideOfVC:(UIViewController*)vc
+{
+	return [self sdc_alignTopEdgeWithTopLayoutGuideOfVC:vc offset:0];
+}
+
+-(NSLayoutConstraint*)sdc_alignTopEdgeWithTopLayoutGuideOfVC:(UIViewController*)vc offset:(CGFloat)offset
+{
+	UIView *commonAncestor = [self sdc_commonAncestorWithView:vc.view];
+	
+	NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self
+																  attribute:NSLayoutAttributeTop
+																  relatedBy:NSLayoutRelationEqual
+																	 toItem:vc.topLayoutGuide
+																  attribute:NSLayoutAttributeBottom
+																 multiplier:1.0
+																   constant:offset];
+	
+	constraint.priority = priority;
+	[commonAncestor addConstraint:constraint];
+	return constraint;
+}
+
 - (NSLayoutConstraint *)sdc_pinVerticalSpacing:(CGFloat)spacing toView:(UIView *)view {
 	UIView *commonAncestor = [self sdc_commonAncestorWithView:view];
 	

@@ -122,5 +122,5 @@ static inline void _backThreadBackground(dispatch_block_t block)
 
 +(UIView*)horizontalHairlineWithColor:(UIColor*)color;
 +(UIView*)verticalHairlineWithColor:(UIColor*)color;
-
++(NSDictionary*)getCarrierInfo;
 @end

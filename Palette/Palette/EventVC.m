@@ -12,6 +12,7 @@
 @interface EventVC ()
 
 @property (nonatomic) EventCV *eventCV;
+@property (nonatomic) NSMutableArray *dataSet;
 
 @end
 
@@ -20,12 +21,13 @@
 @implementation EventVC
 
 @synthesize eventCV;
+@synthesize dataSet;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self configNavBar];
-    [self prepareCollectionView];
+    [self prepareDataSet];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,20 +35,50 @@
     // Dispose of any resources that can be recreated.
 }
 
+///////////////////// Data Set /////////////////////
+- (void)prepareDataSet {
+    dataSet = [NSMutableArray new];
+    
+    [self showPageLoadingAnimated:YES completion:nil];
+    
+    [Helper_Connectivity getEventDictionaryWithParameter:nil andSuccessHandler:^(NSMutableArray *dic) {
+        
+        dataSet = dic;
+        [self prepareCollectionView];
+        [self hidePageLoadingAnimated:YES completion:nil];
+        
+    } andFailHandler:^{
+        
+        [self hidePageLoadingAnimated:YES completion:nil];
+        
+    }];
+}
+
+
 ///////////////////// Navigation Bar /////////////////////
 
 - (void)configNavBar {
-    UILabel *title = [UILabel new];
+    self.title = @"پالت";
+    self.tabBarItem.title = @"";
     
-    title.text = @"پالت";
-    title.font = [UIFont fontWithName:@"IRANYekanMobile-Bold" size:20];
-    title.textColor = [UIColor blackColor];
-    title.textAlignment = NSTextAlignmentCenter;
+    UIColor *color = [UIColor colorWithRed:232.0/255 green:232.0/255 blue:232.0/255 alpha:1];
+    [helper hairlineBottomOfView:self.visualEffectView margin:0 backColor:color];
     
-    title.frame = CGRectMake(0, 0, 60, 50);
-    self.navigationItem.titleView = title;
+    UIView *overlayView = [UIView new];
+    overlayView.backgroundColor = [UIColor colorWithRed:150.0/255 green:150.0/255 blue:150.0/255 alpha:0.1];
+    
+    [self.visualEffectView addSubview:overlayView];
+    overlayView.translatesAutoresizingMaskIntoConstraints = NO;
+    [overlayView sdc_alignEdgesWithSuperview:UIRectEdgeAll];
 }
 
+- (UIVisualEffect *)effectForVisualEffectView {
+    return [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+}
+
+- (BOOL)reserveSpaceForLeftNavBarItem {
+    return NO;
+}
 
 ///////////////////// Collection View /////////////////////
 
@@ -57,24 +89,14 @@
     eventCV.translatesAutoresizingMaskIntoConstraints = NO;
     [eventCV sdc_alignEdgesWithSuperview:UIRectEdgeAll insets:UIEdgeInsetsMake(0, 15, 0, -15)];
     
-    
-    //junk
-    NSMutableArray *arr = [NSMutableArray new];
-    
-    for (int i = 0; i < 2; i++) {
-        NSMutableArray *arrr = [NSMutableArray new];
-        
-        for (int j = 0; j < 50; j++) {
-            NSMutableDictionary *arrrr = [NSMutableDictionary new];
-            arrrr[@"width"] = @([Helper_Palette getRandomNumberBetween:100 to:200]);
-            arrrr[@"height"] = @([Helper_Palette getRandomNumberBetween:150 to:250]);
-            [arrr addObject:arrrr];
-        }
-        [arr addObject:arrr];
-    }
+    UIEdgeInsets insets = UIEdgeInsetsMake(self.topLayoutGuide.length,
+                                           0.0,
+                                           self.bottomLayoutGuide.length,
+                                           0.0);
+    eventCV.contentInset = insets;
     
     
-    [eventCV configurationWithDataSet:arr];
+    [eventCV configurationWithDataSet:dataSet];
 }
 
 

@@ -25,7 +25,7 @@
 - (void)configurationWithDataSet:(NSMutableArray *)data {
     dataSet = data;
     
-    if (dataSet) {
+    if (!dataSet) {
         dataSet = [NSMutableArray new];
     }
     
@@ -53,12 +53,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return [dataSet count];
-    return 40;
+    return [dataSet count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GalleryTVC *cell = [tableView dequeueReusableCellWithIdentifier:@"GalleryTVC" forIndexPath:indexPath];
+    
+    [cell configurationWithDictionary:dataSet[indexPath.row]];
     
     return cell;
 }

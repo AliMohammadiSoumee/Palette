@@ -12,6 +12,7 @@
 #import "MyLinearGradientLayer.h"
 #import "MyRadialGradientLayer.h"
 #import "UIView+SDCAutoLayout.h"
+#import "Codebase_definitions.h"
 
 #define CGPointFromArray(x) CGPointMake([x[0] floatValue], [x[1] floatValue])
 #define CGSizeFromArray(x) CGSizeMake([x[0] floatValue], [x[1] floatValue])
@@ -32,6 +33,9 @@
 	if (self)
 	{
 		mainLayer = [CALayer new];
+		mainLayer.shouldRasterize = YES;
+		_defineDeviceScale;
+		mainLayer.rasterizationScale = s;
 		[self.layer addSublayer:mainLayer];
 		self.vector = vector;
 	}
@@ -58,7 +62,15 @@
 -(void)draw
 {
 	for (CALayer* layer in mainLayer.sublayers)
-		[layer removeFromSuperlayer];
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[layer removeFromSuperlayer];
+		});
+	}
+	
+	_defineDeviceScale;
+	
+	mainLayer.contentsScale = s;
 	
 	CGSize size = [self getArtboardSize];
 	for (NSDictionary* pathDesc in _vector[@"group"]) {
@@ -66,6 +78,7 @@
 		if ([fillType isEqualToString:@"fill"])
 		{
 			CAShapeLayer* shapeLayer = [CAShapeLayer new];
+			shapeLayer.contentsScale = s;
 			shapeLayer.path = [MyVector bezierPathWithDescArray:pathDesc[@"path"]].CGPath;
 			[mainLayer addSublayer:shapeLayer];
 			shapeLayer.fillColor = [MyVector UIColorFromArray:pathDesc[@"fill"][@"colors"]].CGColor;
@@ -77,8 +90,10 @@
 		else if ([fillType isEqualToString:@"linearGradient"])
 		{
 			CAShapeLayer* maskLayer = [CAShapeLayer new];
+			maskLayer.contentsScale = s;
 			maskLayer.path = [MyVector bezierPathWithDescArray:pathDesc[@"path"]].CGPath;
 			MyLinearGradientLayer* gradLayer = [MyLinearGradientLayer new];
+			gradLayer.contentsScale = s;
 			gradLayer.frame = CGRectMake(0, 0, size.width, size.height);
 			gradLayer.colors = [MyVector colorArrayFromArray:pathDesc[@"fill"][@"colors"]];
 			gradLayer.locations = pathDesc[@"fill"][@"locations"];
@@ -89,16 +104,16 @@
 			gradLayer.mask = maskLayer;
 			[mainLayer addSublayer:gradLayer];
 			gradLayer.zPosition = [pathDesc[@"zOrder"] floatValue];
-			
+			gradLayer.opacity = [pathDesc[@"opacity"] floatValue];
 			gradLayer.compositingFilter = [self getBlendModeForPath:pathDesc];
-			
-			
 		}
 		else if ([fillType isEqualToString:@"radialGradient"])
 		{
 			CAShapeLayer* maskLayer = [CAShapeLayer new];
+			maskLayer.contentsScale = s;
 			maskLayer.path = [MyVector bezierPathWithDescArray:pathDesc[@"path"]].CGPath;
 			MyRadialGradientLayer* gradLayer = [MyRadialGradientLayer new];
+			gradLayer.contentsScale = s;
 			CGPoint actualCenterPiont = CGPointFromArray(pathDesc[@"fill"][@"center"]);
 			gradLayer.centerPoint = CGPointMake(actualCenterPiont.x / size.width, actualCenterPiont.y / size.height);
 			gradLayer.radius = [pathDesc[@"fill"][@"radius"] floatValue];

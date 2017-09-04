@@ -14,7 +14,7 @@
 
 @interface Helper_Connectivity : NSObject
 
-+ (void)getGalleyDictionaryWithParameter:(NSMutableDictionary *)parameters andSuccessHandler:(void (^)(NSMutableDictionary *dic))successHandler andFailHandler:(void (^)(void))failHandler;
-
++ (void)getGalleyDictionaryWithParameter:(NSMutableDictionary *)parameters andSuccessHandler:(void (^)(NSMutableArray *dic))successHandler andFailHandler:(void (^)(void))failHandler;
++ (void)getEventDictionaryWithParameter:(NSMutableDictionary *)parameters andSuccessHandler:(void (^)(NSMutableArray *dic))successHandler andFailHandler:(void (^)(void))failHandler;
 + (void)searchByDictionary:(NSMutableDictionary *)parameters andSuccessHandler:(void (^)(NSMutableDictionary *dic))successHandler andFailHandler:(void (^)(void))failHandler;
 @end

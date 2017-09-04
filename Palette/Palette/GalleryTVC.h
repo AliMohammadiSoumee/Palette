@@ -10,4 +10,6 @@
 
 @interface GalleryTVC : UITableViewCell
 
+- (void)configurationWithDictionary:(NSMutableDictionary *)dic;
+
 @end

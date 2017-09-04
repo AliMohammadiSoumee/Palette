@@ -109,17 +109,35 @@
 		_defineWeakSelf;
 		UIBarButtonItem* item = [helper shapeBarButtonWithConf:^(MyShapeButton *button) {
 			button.shapeView.shapeDesc = k_iconLeftArrow();
-			button.shapeMargins = UIEdgeInsetsMake(15, 15, 15, 15);
+			if ([weakSelf reserveSpaceForLeftNavBarItem])
+				button.shapeMargins = UIEdgeInsetsMake(15, 15, 15, 15);
+			else
+				button.shapeMargins = UIEdgeInsetsMake(15, 0, 15, 30);
+			//			button.layer.backgroundColor = [UIColor yellowColor].CGColor;
 		} andCallback:^{
 			[weakSelf.navigationController popViewControllerAnimated:YES];
 		}];
 		
-		UIView* v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 30)];
-		UIBarButtonItem* leftSpacer = [[UIBarButtonItem alloc] initWithCustomView:v];
-		self.navigationItem.leftBarButtonItems = @[leftSpacer, item];
+		if ([self reserveSpaceForLeftNavBarItem])
+		{
+			UIView* v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 30)];
+			UIBarButtonItem* leftSpacer = [[UIBarButtonItem alloc] initWithCustomView:v];
+			self.navigationItem.leftBarButtonItems = @[leftSpacer, item];
+		}
+		else
+			self.navigationItem.leftBarButtonItem = item;
 	}
 	
+	//fixing a bug that caused to appear ... dots when panning back
+	UIBarButtonItem *backButton2 = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+	self.navigationItem.backBarButtonItem = backButton2;
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:UIDeviceOrientationDidChangeNotification object: nil];
+}
+
+-(BOOL)reserveSpaceForLeftNavBarItem
+{
+	return true;
 }
 
 - (void)deviceOrientationDidChange:(NSNotification *)notification {

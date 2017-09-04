@@ -12,6 +12,9 @@
 #import "PodAsset.h"
 #import <sqlite3/sqlite3.h>
 
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
+
 @implementation helper
 
 +(UISelectionFeedbackGenerator*)selectionFeedbackGenerator
@@ -459,6 +462,23 @@ static NSString* langKey;
 	}
 }
 
++(NSDictionary*)getCarrierInfo
+{
+	CTTelephonyNetworkInfo *netinfo = [[CTTelephonyNetworkInfo alloc] init];
+	CTCarrier *carrier = [netinfo subscriberCellularProvider];
+	
+	NSMutableDictionary* dic = [NSMutableDictionary new];
+	if (_str_ok2(carrier.carrierName))
+		dic[@"carrierName"] = carrier.carrierName;
+	if (_str_ok2(carrier.mobileCountryCode))
+		dic[@"mobileCountryCode"] = carrier.mobileCountryCode;
+	if (_str_ok2(carrier.mobileNetworkCode))
+		dic[@"mobileNetworkCode"] = carrier.mobileNetworkCode;
+	
+	dic[@"allowsVOIP"] = @(carrier.allowsVOIP);
+	
+	return dic;
+}
 
 /**
  Xcode has a bug. _str(arg) is different from [helper lozalizable....withstring:arg] because when you are using _str it will prepend a <zero space width> to arg. also when creating the localizable dictionary some invisble characters may be inserted into the lozalizable key. so will use this function to trim those bad characters.

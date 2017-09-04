@@ -119,4 +119,8 @@ FOUNDATION_EXPORT CGFloat const SDCAutoLayoutStandardParentChildDistance;
 - (NSLayoutConstraint *)sdc_alignBottomEdgeWithSuperviewMargin:(CGFloat)margin relation:(NSLayoutRelation)relation;
 - (NSLayoutConstraint *)sdc_alignRightEdgeWithSuperviewMargin:(CGFloat)margin relation:(NSLayoutRelation)relation;
 
+-(NSLayoutConstraint*)sdc_alignBottomEdgeWithBottomLayoutGuideOfVC:(UIViewController*)vc;
+-(NSLayoutConstraint*)sdc_alignBottomEdgeWithBottomLayoutGuideOfVC:(UIViewController*)vc offset:(CGFloat)offset;
+-(NSLayoutConstraint*)sdc_alignTopEdgeWithTopLayoutGuideOfVC:(UIViewController*)vc;
+-(NSLayoutConstraint*)sdc_alignTopEdgeWithTopLayoutGuideOfVC:(UIViewController*)vc offset:(CGFloat)offset;
 @end

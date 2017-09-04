@@ -20,6 +20,7 @@
 //-(void)showGeneralErrorWithMessage:(NSString*)msg;
 //-(void)dismissErrors;
 -(void)reload;
+-(BOOL)reserveSpaceForLeftNavBarItem;
 
 @property (assign, nonatomic) bool manuallyHideLoadingViewOnSuccessfulReload;
 @property (assign, nonatomic) bool noPageLoading;
@@ -62,7 +63,7 @@
 /**
  override this method if you want other visual effects.
  default: [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]
-
+ 
  @return the desired visual effect e.g. [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]
  */
 -(UIVisualEffect*)effectForVisualEffectView;

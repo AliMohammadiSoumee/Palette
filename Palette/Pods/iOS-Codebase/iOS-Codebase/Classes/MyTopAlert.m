@@ -8,11 +8,6 @@
 
 #import "MyTopAlert.h"
 #import "Codebase.h"
-//#import "MyShapeButton.h"
-//#import "UIView+SDCAutoLayout.h"
-//#import "Codebase_definitions.h"
-//#import "MyShapeView.h"
-//#import "_viewBase.h"
 
 #define correspondingTopAlertObjectKey @"MyTopAlert"
 
@@ -70,14 +65,13 @@
 {
 	CAShapeLayer* upperTriangle;
 	CAShapeLayer* lowerTriangle;
-	MyShapeButton* icon;
+	
 	NSTimer* dismissTimer;
 }
 
+
 @property (retain, nonatomic) UIView* contentView;
 @property (retain, nonatomic) UIView* actionHolder;
-@property (retain, nonatomic) UILabel* titleLabel;
-@property (retain, nonatomic) UILabel* messageLabel;
 @property (retain, nonatomic) MyTopAlert_smallCap* smallCap;
 
 @property (weak, nonatomic) UIViewController* vcRef;
@@ -118,31 +112,31 @@
 	lowerTriangle = [CAShapeLayer new];
 	[_contentView.layer addSublayer:lowerTriangle];
 	
-	icon = [[MyShapeButton alloc] initWithShapeDesc:nil andShapeTintColor:[UIColor whiteColor] andButtonClick:nil];
-	icon.setsCornerRadiusForShapeView = NO;
-	icon.layer.cornerRadius = 40.0f;
-	icon.shapeMargins = UIEdgeInsetsMake(25, 25, 25, 25);
-	icon.layer.borderColor = [UIColor whiteColor].CGColor;
-	icon.layer.borderWidth = 3;
-	icon.translatesAutoresizingMaskIntoConstraints = NO;
-	[_contentView addSubview:icon];
-	[icon sdc_pinCubicSize:80];
-	[icon sdc_alignTopEdgeWithSuperviewMargin:30];
-	[icon sdc_horizontallyCenterInSuperview];
+	_icon = [[MyShapeButton alloc] initWithShapeDesc:nil andShapeTintColor:[UIColor whiteColor] andButtonClick:nil];
+	_icon.setsCornerRadiusForShapeView = NO;
+	_icon.layer.cornerRadius = 40.0f;
+	_icon.shapeMargins = UIEdgeInsetsMake(25, 25, 25, 25);
+	_icon.layer.borderColor = [UIColor whiteColor].CGColor;
+	_icon.layer.borderWidth = 3;
+	_icon.translatesAutoresizingMaskIntoConstraints = NO;
+	[_contentView addSubview:_icon];
+	[_icon sdc_pinCubicSize:80];
+	[_icon sdc_alignTopEdgeWithSuperviewMargin:30];
+	[_icon sdc_horizontallyCenterInSuperview];
 	
 	_titleLabel = [UILabel new];
 	_titleLabel.textColor = [UIColor whiteColor];
-	_titleLabel.font = [UIFont fontWithName:@"IRANSansMobile-Bold" size:18];
+	//	_titleLabel.font = [UIFont fontWithName:@"IRANSansMobile-Bold" size:18];
 	_titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	[_contentView addSubview:_titleLabel];
-	[_titleLabel sdc_alignEdge:UIRectEdgeTop withEdge:UIRectEdgeBottom ofView:icon inset:20];
+	[_titleLabel sdc_alignEdge:UIRectEdgeTop withEdge:UIRectEdgeBottom ofView:_icon inset:20];
 	[_titleLabel sdc_horizontallyCenterInSuperview];
 	
 	_messageLabel = [UILabel new];
 	_messageLabel.textColor = [UIColor whiteColor];
 	_messageLabel.textAlignment = NSTextAlignmentCenter;
 	_messageLabel.numberOfLines = 0;
-	_messageLabel.font = [UIFont fontWithName:@"IRANSansMobile-Light" size:14];
+	//	_messageLabel.font = [UIFont fontWithName:@"IRANSansMobile-Light" size:14];
 	_messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	[_contentView addSubview:_messageLabel];
 	[_messageLabel sdc_alignSideEdgesWithSuperviewInset:40];
@@ -156,7 +150,24 @@
 	[_actionHolder sdc_alignEdge:UIRectEdgeTop withEdge:UIRectEdgeBottom ofView:_messageLabel inset:10];
 	[_actionHolder sdc_horizontallyCenterInSuperview];
 	[_actionHolder sdc_alignBottomEdgeWithSuperviewMargin:0];
-	
+}
+
+-(void)setIconTop:(CGFloat)iconTop
+{
+	_iconTop = iconTop;
+	[_icon sdc_get_top].constant = iconTop;
+}
+
+-(void)setTitleFont:(UIFont *)titleFont
+{
+	_titleFont = titleFont;
+	_titleLabel.font = titleFont;
+}
+
+-(void)setCaptionFont:(UIFont *)captionFont
+{
+	_captionFont = captionFont;
+	_messageLabel.font = captionFont;
 }
 
 -(void)layoutSubviews
@@ -176,6 +187,16 @@
 	[path2 addLineToPoint:CGPointMake(CGRectGetMinX(_contentView.bounds), CGRectGetMaxY(_contentView.bounds))];
 	[path2 closePath];
 	lowerTriangle.path = path2.CGPath;
+}
+
++(void)hideTopAlertForVC:(UIViewController*)vc animated:(BOOL)animated
+{
+	if ([vc dataObjectForKey:correspondingTopAlertObjectKey])
+	{
+		MyTopAlert* anotherAlert = [vc dataObjectForKey:correspondingTopAlertObjectKey];
+		[anotherAlert hideAlertAnimated:animated];
+		[vc setDataObject:nil forKey:correspondingTopAlertObjectKey];
+	}
 }
 
 -(void)configureWithType:(MyTopAlertType)type title:(NSString*)title message:(NSString*)message andVC:(UIViewController*)vc andActionView:(UIView*)action
@@ -208,7 +229,7 @@
 			configTimer = NO;
 		}
 		
-		icon.shapeView.shapeDesc = __codebase_k_iconCrossHeavy();
+		_icon.shapeView.shapeDesc = __codebase_k_iconCrossHeavy();
 	}
 	else if (type == MyTopAlertTypeWarning)
 	{
@@ -228,7 +249,7 @@
 			
 		}
 		
-		icon.shapeView.shapeDesc = __codebase_k_iconWarning();
+		_icon.shapeView.shapeDesc = __codebase_k_iconWarning();
 	}
 	
 	if (configTimer)
@@ -268,18 +289,33 @@
 	[self presentAlertType:type title:title message:message onViewController:vc actionView:nil];
 }
 
++(void)presentAlertType:(MyTopAlertType)type title:(NSString*)title message:(NSString*)message onViewController:(UIViewController*)vc optionsBlock:(void (^)(MyTopAlert* topAlert))topAlertBlock
+{
+	[self presentAlertType:type title:title message:message onViewController:vc alignWithTopOfView:nil actionView:nil optionsBlock:topAlertBlock];
+}
+
 +(void)presentAlertType:(MyTopAlertType)type title:(NSString*)title message:(NSString*)message onViewController:(UIViewController*)vc actionView:(UIView *)actionView
 {
-	[self presentAlertType:type title:title message:message onViewController:vc alignWithTopOfView:nil actionView:actionView];
+	[self presentAlertType:type title:title message:message onViewController:vc alignWithTopOfView:nil actionView:actionView optionsBlock:nil];
 }
 
 +(void)presentAlertType:(MyTopAlertType)type title:(NSString*)title message:(NSString*)message onViewController:(UIViewController*)vc alignWithTopOfView:(UIView*)alignTopWithView actionView:(UIView *)actionView
 {
+	[self presentAlertType:type title:title message:message onViewController:vc alignWithTopOfView:alignTopWithView actionView:actionView optionsBlock:nil];
+}
+
++(void)presentAlertType:(MyTopAlertType)type title:(NSString*)title message:(NSString*)message onViewController:(UIViewController*)vc alignWithTopOfView:(UIView*)alignTopWithView actionView:(UIView *)actionView optionsBlock:(void (^)(MyTopAlert* topAlert))topAlertBlock
+{
 	hapticNotiError;
 	MyTopAlert* myTopAlert = [MyTopAlert new];
 	[myTopAlert configureWithType:type title:title message:message andVC:vc andActionView:actionView];
+	if (topAlertBlock)
+		topAlertBlock(myTopAlert);
 	myTopAlert.translatesAutoresizingMaskIntoConstraints = NO;
-	[vc.view addSubview:myTopAlert];
+	if ([vc.view respondsToSelector:@selector(_addSubview:)])
+		[vc.view performSelector:@selector(_addSubview:) withObject:myTopAlert];
+	else
+		[vc.view addSubview:myTopAlert];
 	[myTopAlert sdc_alignSideEdgesWithSuperviewInset:0];
 	if (!alignTopWithView)
 		[myTopAlert sdc_alignEdge:UIRectEdgeTop withEdge:UIRectEdgeTop ofView:vc.view];

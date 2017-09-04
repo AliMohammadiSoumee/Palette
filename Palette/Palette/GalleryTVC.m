@@ -124,7 +124,6 @@
     [titleLb sdc_alignEdge:UIRectEdgeRight withEdge:UIRectEdgeLeft ofView:imageV inset:-20];
     [titleLb sdc_alignEdge:UIRectEdgeTop withEdge:UIRectEdgeTop ofView:imageV inset:15];
     
-//    titleLb.font = [UIFont fontWithName:@"IRANSansMobile-Medium" size:18];
     titleLb.font = [UIFont fontWithName:@"IRANYekanMobile-Bold" size:18];
     titleLb.textColor = turquoiseColor;
     titleLb.textAlignment = NSTextAlignmentRight;
@@ -150,13 +149,34 @@
 }
 
 - (void)prepareHairLine {
-//    hairLine = [helper horizontalHairlineWithColor:[UIColor colorWithRed:235.0/255 green:235.0/255 blue:241.0/255 alpha:0.4]];
     hairLine = [helper horizontalHairlineWithColor:[UIColor darkGrayColor]];
     [contentV addSubview:hairLine];
     hairLine.translatesAutoresizingMaskIntoConstraints = NO;
     [hairLine sdc_alignEdgesWithSuperview:UIRectEdgeBottom |
      UIRectEdgeLeft insets:UIEdgeInsetsMake(0, 0, 0, 0)];
     [hairLine sdc_alignEdge:UIRectEdgeRight withEdge:UIRectEdgeRight ofView:titleLb];
+}
+
+
+
+///////////////////// Configurations /////////////////////
+
+- (void)configurationWithDictionary:(NSMutableDictionary *)dic {
+    dataSet = dic;
+    if (!dataSet) {
+        dataSet = [NSMutableDictionary new];
+    }
+    
+    
+    if (_str_ok2(dataSet[@"title"])) {
+        titleLb.text = dataSet[@"title"];
+    }
+    
+    if (_str_ok2(dataSet[@"image"])) {
+        [imageV HyperCacheSetImageWithURL:dataSet[@"image"]];
+    }
+    
+    //TODO  number of events
 }
 
 @end

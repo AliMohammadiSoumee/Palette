@@ -31,26 +31,53 @@ static AFHTTPSessionManager *httpManager;
     return httpManager;
 }
 
-+ (void)getGalleyDictionaryWithParameter:(NSMutableDictionary *)parameters andSuccessHandler:(void (^)(NSMutableDictionary *dic))successHandler andFailHandler:(void (^)(void))failHandler {
++ (void)getGalleyDictionaryWithParameter:(NSMutableDictionary *)parameters andSuccessHandler:(void (^)(NSMutableArray *dic))successHandler andFailHandler:(void (^)(void))failHandler {
 
     
-    [[Helper_Connectivity getAFHTTPSessoinManager] POST:@"/gallery/" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[Helper_Connectivity getAFHTTPSessoinManager] GET:@"http://0pach.com/mr/2/server/uploads/galleries.json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        if ([responseObject isKindOfClass:[NSMutableDictionary class]]) {
-            successHandler(responseObject);
-        }
-        else
-            successHandler([NSMutableDictionary new]);
+        successHandler(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        [ServerErrors handleErrorWithTask:task andError:error fromPart:@"Profile"];
         
         failHandler();
     }];
     
     
+    
+//    
+//    [[Helper_Connectivity getAFHTTPSessoinManager] POST:@"/gallery/" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        
+//        if ([responseObject isKindOfClass:[NSMutableDictionary class]]) {
+//            successHandler(responseObject);
+//        }
+//        else
+//            successHandler([NSMutableDictionary new]);
+//        
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        
+//        [ServerErrors handleErrorWithTask:task andError:error fromPart:@"Profile"];
+//        
+//        failHandler();
+//    }];
+    
+    
 }
+
+
++ (void)getEventDictionaryWithParameter:(NSMutableDictionary *)parameters andSuccessHandler:(void (^)(NSMutableArray *dic))successHandler andFailHandler:(void (^)(void))failHandler {
+    
+    
+    [[Helper_Connectivity getAFHTTPSessoinManager] GET:@"http://0pach.com/mr/2/server/uploads/Eevnts.json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        successHandler(responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        failHandler();
+    }];
+}
+
 
 + (void)searchByDictionary:(NSMutableDictionary *)parameters andSuccessHandler:(void (^)(NSMutableDictionary *dic))successHandler andFailHandler:(void (^)(void))failHandler {
     

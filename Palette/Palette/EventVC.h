@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EventVC : UIViewController
+@interface EventVC : _HomeBaseVC
 
 @end

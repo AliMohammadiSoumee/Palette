@@ -33,6 +33,7 @@
 		A39CCDD21F58FD3B00AF611F /* Helper_Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CCDCC1F58FD3B00AF611F /* Helper_Palette.m */; };
 		A39CCDD31F58FD3B00AF611F /* Helper_Connectivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CCDCE1F58FD3B00AF611F /* Helper_Connectivity.m */; };
 		A39CCDD41F58FD3B00AF611F /* ServerErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = A39CCDD01F58FD3B00AF611F /* ServerErrors.m */; };
+		A3DA7E361F5D83D600D4A73A /* MyHomeBaseNavC.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DA7E351F5D83D600D4A73A /* MyHomeBaseNavC.m */; };
 		A3E2BEA61F5818B400F33E83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E2BEA51F5818B400F33E83 /* main.m */; };
 		A3E2BEA91F5818B400F33E83 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E2BEA81F5818B400F33E83 /* AppDelegate.m */; };
 		A3E2BEB11F5818B400F33E83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3E2BEB01F5818B400F33E83 /* Assets.xcassets */; };
@@ -83,6 +84,8 @@
 		A39CCDCF1F58FD3B00AF611F /* ServerErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerErrors.h; sourceTree = "<group>"; };
 		A39CCDD01F58FD3B00AF611F /* ServerErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerErrors.m; sourceTree = "<group>"; };
 		A39CCDD11F58FD3B00AF611F /* Palette.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.pch; sourceTree = "<group>"; };
+		A3DA7E341F5D83D600D4A73A /* MyHomeBaseNavC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHomeBaseNavC.h; sourceTree = "<group>"; };
+		A3DA7E351F5D83D600D4A73A /* MyHomeBaseNavC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHomeBaseNavC.m; sourceTree = "<group>"; };
 		A3E2BEA11F5818B400F33E83 /* Palette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palette.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3E2BEA51F5818B400F33E83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3E2BEA71F5818B400F33E83 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -226,6 +229,8 @@
 				A3E2BEA81F5818B400F33E83 /* AppDelegate.m */,
 				A30852AE1F5AC87A003978C9 /* MainTBC.h */,
 				A30852AF1F5AC87A003978C9 /* MainTBC.m */,
+				A3DA7E341F5D83D600D4A73A /* MyHomeBaseNavC.h */,
+				A3DA7E351F5D83D600D4A73A /* MyHomeBaseNavC.m */,
 				A30852AC1F5AC830003978C9 /* Main.storyboard */,
 				A30852B11F5AC8F6003978C9 /* Gallery */,
 				A30852CE1F5AF08E003978C9 /* Event */,
@@ -397,6 +402,7 @@
 				A39CCDC81F58FCED00AF611F /* UIImage+AMSExtension.m in Sources */,
 				A30852B61F5AC927003978C9 /* GalleryVC.m in Sources */,
 				A30852B91F5ACAA2003978C9 /* GalleryTV.m in Sources */,
+				A3DA7E361F5D83D600D4A73A /* MyHomeBaseNavC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

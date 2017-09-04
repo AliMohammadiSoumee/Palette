@@ -49,9 +49,9 @@
 	CGColorSpaceRelease(colorSpace);
 	CGPoint actualStartPoint = CGPointMake(_startPoint.x * self.bounds.size.width, _startPoint.y * self.bounds.size.height);
 	CGPoint actualEndPoint = CGPointMake(_endPoint.x * self.bounds.size.width, _endPoint.y * self.bounds.size.height);
-	CGContextDrawLinearGradient(ctx, gradient, actualStartPoint, actualEndPoint, kCGGradientDrawsAfterEndLocation);
+	CGContextDrawLinearGradient(ctx, gradient, actualStartPoint, actualEndPoint, kCGGradientDrawsBeforeStartLocation | kCGGradientDrawsAfterEndLocation);
 	
-	CGContextSetBlendMode(ctx,kCGBlendModeMultiply);
+	//	CGContextSetBlendMode(ctx,kCGBlendModeMultiply);
 	
 	CGGradientRelease(gradient);
 }

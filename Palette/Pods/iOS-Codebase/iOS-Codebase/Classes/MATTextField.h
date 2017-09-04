@@ -34,7 +34,7 @@ typedef enum : NSUInteger {
 @property(null_resettable, nonatomic, strong) UIColor *tintColor;
 @property(nonatomic) CGFloat alpha;
 @property (assign, nonatomic) BOOL pasteDisabled;
-@property(nonatomic) UIKeyboardType keyboardType; 
+@property(nonatomic) UIKeyboardType keyboardType;
 
 @end
 
@@ -74,7 +74,7 @@ typedef _Nonnull id <_MATTextField_FieldAndViewSharedProtocol> textFieldOrView;
 @property (nonatomic, copy, nullable) void (^textFieldOrViewDidChange)(textFieldOrView textFieldOrView);
 
 /**
- ensures the value of the textfield / textview is a vaild one.
+ ensures the value of the textfield / textview is a vaild one. if the component is disabled it will return true regardlessly.
  */
 @property (assign, nonatomic, readonly) BOOL isValid;
 
@@ -348,4 +348,5 @@ typedef _Nonnull id <_MATTextField_FieldAndViewSharedProtocol> textFieldOrView;
  */
 @property (assign, nonatomic) BOOL validateContinuously;
 
+-(void)forceValidate;
 @end

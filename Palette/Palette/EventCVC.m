@@ -78,10 +78,28 @@
 
 
 - (void)configurationWithDictionary:(NSMutableDictionary *)dic {
+    dataSet = dic;
+    if (!dataSet){
+        dataSet = [NSMutableDictionary new];
+    }
+    
+//    self.backgroundColor = [UIColor colorWithRed:245.0/255 green:245.0/255 blue:245.0/255 alpha:1];
+    
     [self prepareImageView];
     [self prepareEventLabel];
     [self prepareArtistLabel];
     [self prepareGalleryLabel];
+    
+    [self addValues];
+}
+
+///////////////////// Add Values /////////////////////
+
+- (void)addValues {
+    [imageView HyperCacheSetImageWithURL:_strfmt(@"%@%@",_server_address, dataSet[@"images"][0])];
+    eventLb.text = dataSet[@"title"];
+    artistLb.text = dataSet[@"artist"];
+    galleryLb.text = dataSet[@"galleryTitle"];
 }
 
 

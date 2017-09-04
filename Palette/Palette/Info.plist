@@ -48,5 +48,12 @@
 		<string>IRANSansMobile(FaNum)_UltraLight.ttf</string>
 		<string>IRANSansMobile(FaNum).ttf</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 </dict>
 </plist>

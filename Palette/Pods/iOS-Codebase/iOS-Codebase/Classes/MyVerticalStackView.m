@@ -199,7 +199,7 @@
 
 -(void)addArrangedSubview:(UIView *)subview margins:(UIEdgeInsets)margins animated:(BOOL)animated fillMode:(MyVerticalStackViewFillMode)fillMode
 {
-	[self addArrangedSubview:subview margins:margins animated:animated fillMode:MyVerticalStackViewFillModeFill initiallyHidden:NO];
+	[self addArrangedSubview:subview margins:margins animated:animated fillMode:fillMode initiallyHidden:NO];
 }
 
 //-(void)addArrangedSubviewOnTop:(UIView *)subview margins:(UIEdgeInsets)margins animated:(BOOL)animated fillMode:(MyVerticalStackViewFillMode)fillMode initiallyHidden:(BOOL)hidden

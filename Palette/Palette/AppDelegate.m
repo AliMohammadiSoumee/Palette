@@ -23,17 +23,26 @@
 
     
     MainTBC *mainVC = _vc_from_storyboard(@"Main", @"MainTBC");
-//    GalleryVC *mainVC = _vc_from_storyboard(@"Gallery", @"GalleryVC");
+//    UINavigationController *mainVC = _vc_from_storyboard(@"Gallery", @"GalleryVC");
 //    UINavigationController *mainVC = _vc_from_storyboard(@"Event", @"EventNavC");
     
+    [self configAppearance];
+    
+//    [helper printAvailableFonts];
     
     
-    [helper printAvailableFonts];
+    
+    
     [HyperWindowSwitch setRootViewController:mainVC];
     
     return YES;
 }
 
+
+-(void)configAppearance {
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: turquoiseColor, NSFontAttributeName: [UIFont fontWithName:@"IRANYekanMobile-Bold" size:24]}];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -19,6 +19,8 @@
 
 
 #define spotifyGreenColor [UIColor colorWithHexString:@"1DB955"]
-#define turquoiseColor [UIColor colorWithHexString:@"40E0D0"]
+//#define turquoiseColor [UIColor colorWithHexString:@"40E0D0"]
+#define turquoiseColor [UIColor colorWithHexString:@"00A693"]
+
 
 #endif /* Palette_pch */

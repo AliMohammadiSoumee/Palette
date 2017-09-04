@@ -28,23 +28,5 @@
             </objects>
             <point key="canvasLocation" x="814" y="92"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="pzr-el-0Kk">
-            <objects>
-                <navigationController storyboardIdentifier="EventNavC" automaticallyAdjustsScrollViewInsets="NO" id="E3s-ND-AO5" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ot4-hI-Na8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bLi-Ct-RIC" kind="relationship" relationship="rootViewController" id="4Ee-Ha-pe7"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YiP-uS-6Cy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="96.799999999999997" y="92.203898050974516"/>
-        </scene>
     </scenes>
 </document>
