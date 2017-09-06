@@ -13,5 +13,5 @@
 
 + (NSString*)convertEnNumberToFarsi:(NSString*)number;
 + (int)getRandomNumberBetween:(int)from to:(int)to;
-
++ (NSMutableAttributedString *)MakeJustified_Text:(NSString *)text Font:(UIFont *)font;
 @end

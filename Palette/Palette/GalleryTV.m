@@ -44,6 +44,11 @@
     return 100;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegat respondsToSelector:@selector(didSelectCellWithDictionary:)]) {
+        [self.delegat didSelectCellWithDictionary:dataSet[indexPath.row]];
+    }
+}
 
 
 ///////////////////// Data Source /////////////////////

@@ -8,8 +8,9 @@
 
 #import "GalleryVC.h"
 #import "GalleryTV.h"
+#import "GalleryDetailsVC.h"
 
-@interface GalleryVC ()
+@interface GalleryVC () <GalleryCVDelegate>
 
 @property (nonatomic)GalleryTV *tableView;
 @property (nonatomic)NSMutableArray *dataSet;
@@ -71,7 +72,7 @@
     [helper hairlineBottomOfView:self.visualEffectView margin:0 backColor:color];
     
     UIView *overlayView = [UIView new];
-    overlayView.backgroundColor = [UIColor colorWithRed:150.0/255 green:150.0/255 blue:150.0/255 alpha:0.1];
+    overlayView.backgroundColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:0.5];
     
     [self.visualEffectView addSubview:overlayView];
     overlayView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -103,6 +104,19 @@
                                            0.0);
     tableView.contentInset = insets;
     
+    tableView.delegat = self;
+    
 }
+
+
+- (void)didSelectCellWithDictionary:(NSMutableDictionary *)dic {
+    GalleryDetailsVC *galleryDetailsVC = [GalleryDetailsVC new];
+    
+    [self.navigationController pushViewController:galleryDetailsVC animated:YES];
+    
+    [galleryDetailsVC prepareDataSetWithDictionary:dic];
+}
+
+
 
 @end

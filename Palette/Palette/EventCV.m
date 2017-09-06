@@ -50,7 +50,9 @@
 ///////////////////// Collection Delegate /////////////////////
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if ([self.delegat respondsToSelector:@selector(didSelectCellWithDictionary:)]) {
+        [self.delegat didSelectCellWithDictionary:dataSet[indexPath.row]];
+    }
 }
 
 ///////////////////// Collection Data Source /////////////////////

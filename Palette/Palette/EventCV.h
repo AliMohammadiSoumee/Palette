@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol EventCVDelegate <NSObject>
+
+- (void)didSelectCellWithDictionary:(NSMutableDictionary *)dic;
+
+@end
+
 @interface EventCV : UICollectionView
+
+@property (nonatomic, weak) id <EventCVDelegate> delegat;
 
 - (void)configurationWithDataSet:(NSMutableArray *)data;
 

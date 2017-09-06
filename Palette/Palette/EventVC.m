@@ -8,8 +8,9 @@
 
 #import "EventVC.h"
 #import "EventCV.h"
+#import "EventDetailsVC.h"
 
-@interface EventVC ()
+@interface EventVC () <EventCVDelegate>
 
 @property (nonatomic) EventCV *eventCV;
 @property (nonatomic) NSMutableArray *dataSet;
@@ -65,7 +66,7 @@
     [helper hairlineBottomOfView:self.visualEffectView margin:0 backColor:color];
     
     UIView *overlayView = [UIView new];
-    overlayView.backgroundColor = [UIColor colorWithRed:150.0/255 green:150.0/255 blue:150.0/255 alpha:0.1];
+    overlayView.backgroundColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:0.5];
     
     [self.visualEffectView addSubview:overlayView];
     overlayView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -84,6 +85,7 @@
 
 - (void)prepareCollectionView {
     eventCV = [[EventCV alloc] initWithFrame:CGRectZero collectionViewLayout:[UICollectionViewFlowLayout new]];
+    eventCV.delegat = self;
     
     [self.view addSubview:eventCV];
     eventCV.translatesAutoresizingMaskIntoConstraints = NO;
@@ -97,6 +99,14 @@
     
     
     [eventCV configurationWithDataSet:dataSet];
+}
+
+- (void)didSelectCellWithDictionary:(NSMutableDictionary *)dic {
+    EventDetailsVC *eventDetailsVC = [EventDetailsVC new];
+    
+    [self.navigationController pushViewController:eventDetailsVC animated:YES];
+    
+    [eventDetailsVC prepareDataSetWithDictionary:dic];
 }
 
 

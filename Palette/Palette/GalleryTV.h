@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GalleryCVDelegate <NSObject>
+
+- (void)didSelectCellWithDictionary:(NSMutableDictionary *)dic;
+
+@end
+
+
 @interface GalleryTV : UITableView
 
+@property (nonatomic, weak) id <GalleryCVDelegate> delegat;
 
 - (void)configurationWithDataSet:(NSMutableArray *)data;
 

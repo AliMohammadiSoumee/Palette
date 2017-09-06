@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "GalleryVC.h"
 #import "MainTBC.h"
+#import "EventDetailsVC.h"
+#import "MyHomeBaseNavC.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +27,11 @@
     MainTBC *mainVC = _vc_from_storyboard(@"Main", @"MainTBC");
 //    UINavigationController *mainVC = _vc_from_storyboard(@"Gallery", @"GalleryVC");
 //    UINavigationController *mainVC = _vc_from_storyboard(@"Event", @"EventNavC");
+    
+//    EventDetailsVC *vc = [EventDetailsVC new];
+    
+    
+//    MyHomeBaseNavC *mainVC = [[MyHomeBaseNavC alloc] initWithRootViewController:vc];
     
     [self configAppearance];
     

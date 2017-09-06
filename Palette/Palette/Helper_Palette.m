@@ -27,5 +27,32 @@
     return (int)from + arc4random() % (to-from+1);
 }
 
++ (NSMutableAttributedString *)MakeJustified_Text:(NSString *)text Font:(UIFont *)font{
+//    text = [text stringByReplacingOccurrencesOfString:@"\n" withString:@"faljfioewjfowifjowijfoweijoi"];
+    
+//    NSArray *vals = [text componentsSeparatedByString:@"\n"];
+    
+//    text = [text stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+//    text = [text stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setBaseWritingDirection:NSWritingDirectionRightToLeft];
+    [paragraphStyle setAlignment:NSTextAlignmentJustified];
+    [paragraphStyle setLineSpacing:7];
+    [paragraphStyle setFirstLineHeadIndent:10];
+    
+    NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc] initWithString: text];
+    [attrStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attrStr.length)];
+    
+    NSRange range = (NSRange){0,[attrStr length]};
+    
+    [attrStr enumerateAttribute:NSFontAttributeName inRange:range options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(id value, NSRange range, BOOL *stop) {
+        UIFont *replacementFont = font;
+        [attrStr addAttribute:NSFontAttributeName value:replacementFont range:range];
+    }];
+    
+    return attrStr;
+}
+
 
 @end

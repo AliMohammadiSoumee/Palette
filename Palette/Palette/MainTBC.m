@@ -42,7 +42,6 @@
     
     GalleryVC *galleryVC = _vc_from_storyboard(@"Gallery", @"GalleryVC");
     galleryNavC = [[MyHomeBaseNavC alloc] initWithRootViewController:galleryVC];
-//    [galleryVC view];
     galleryVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"unframe"] tag:10];
     galleryVC.tabBarItem.selectedImage = [UIImage imageNamed:@"frame"];
     galleryVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
@@ -50,7 +49,6 @@
     
     
     EventVC *eventVC = _vc_from_storyboard(@"Event", @"EventVC");
-    
     eventNavC = [[MyHomeBaseNavC alloc] initWithRootViewController:eventVC];
     eventVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"uncalendar"] tag:20];
     eventVC.tabBarItem.selectedImage = [UIImage imageNamed:@"calendar"];
